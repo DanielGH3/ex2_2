@@ -9,9 +9,15 @@ namespace ariel{
         private:
             string name;
             stack<CardPtr> cards;
-            stack<CardPtr> takenCards;
+            stack<CardPtr> takenCards; 
         public:
+            int wins;
+            int losses; 
+            int ties;
+            int normal;
+
             Player(string name);
+            ~Player();
             int stacksize();
             int cardesTaken();
 
@@ -20,6 +26,9 @@ namespace ariel{
             void takeCard(CardPtr card);
             CardPtr getTopCard();
             string getName();
+
+            double getWinrate();
+            double getDrawrate();
     };
 }
 #endif

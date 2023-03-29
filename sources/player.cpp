@@ -7,6 +7,23 @@ using namespace ariel;
 
 Player::Player(string name){
     this->name = name;
+    wins = 0;
+    losses = 0;
+    ties = 0;
+    normal = 0;
+}
+
+Player::~Player(){
+    while(!cards.empty()){
+        CardPtr p = cards.top();
+        cards.pop();
+        delete p;
+    }
+    while(!takenCards.empty()){
+        CardPtr p = takenCards.top();
+        takenCards.pop();
+        delete p;
+    }
 }
 
 int Player::stacksize(){
@@ -41,4 +58,13 @@ CardPtr Player::getTopCard(){
 
 string Player::getName(){
     return name;
+}
+
+double Player::getWinrate(){
+    if(wins + losses == 0) return 0;
+    return (double)wins / (wins + losses);
+}
+double Player::getDrawrate(){
+    if(ties + normal == 0) return 0;
+    return (double)ties / (ties + normal);
 }
